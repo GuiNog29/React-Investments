@@ -1,3 +1,6 @@
+import MoneyFormatter from './MoneyFormatter';
+import PercentageFormatter from './PercentageFormatter';
+
 export default function Investment({ children: investmentData }) {
   const { investment, reports } = investmentData;
   const { description, initialValue, finalValue, totalPercent } = investment;
@@ -11,7 +14,11 @@ export default function Investment({ children: investmentData }) {
       <h2 className="text-center font-semibold text-lg">{description}</h2>
 
       <h3 className="text-center font-semibold text-md">
-        Total Income: <span></span>
+        Total Income: <span className={balanceColor}>
+          <MoneyFormatter>{balance}</MoneyFormatter> (
+            <PercentageFormatter>{totalPercent}</PercentageFormatter>
+          )
+        </span>
       </h3>
     </div>
   );
